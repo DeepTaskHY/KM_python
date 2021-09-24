@@ -1,0 +1,23 @@
+{
+  "header": {
+    "source": "knowledge",
+    "target": ["dialog"],
+    "content": "knowledge_query",
+    "id": 2
+  },
+  "knowledge_query": {
+    "type": "simple",
+    "data": [
+      {
+        "s": "두통",
+        "p": "관련의약품",
+        "o": "두통약"
+      },
+      {
+        "s": "두통약",
+        "p": "위치",
+        "o": "서랍 첫째칸"
+      }
+    ]
+  }
+}

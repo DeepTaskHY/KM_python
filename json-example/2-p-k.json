@@ -1,0 +1,24 @@
+{
+  "header": {
+    "source": "planning",
+    "target": ["knowledge"],
+    "content": ["knowledge_query"],
+    "id": 1
+  },
+  "knowledge_query": {
+    "type": "face_recognition",
+    "data": [
+      {
+        "face_id": 1,
+        "timestamp": 123123123,
+        "social_context": {
+          "name": "?name",
+          "appellation": "?appellation",
+          "disease_name": "?disease_name",
+          "disease_status": "?disease_status",
+          "help_avail": null
+        }
+      }
+    ]
+  }
+}

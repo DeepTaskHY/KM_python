@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.robot-arbi.kr/ontologies/hyu_service.owl"
+         xmlns="http://www.robot-arbi.kr/ontologies/hyu_service.owl#"
+         xmlns:know="http://knowrob.org/kb/knowrob.owl#"
+         xmlns:isro="http://www.robot-arbi.kr/ontologies/isro_medical.owl#"
+         xmlns:isro2="http://www.robot-arbi.kr/ontologies/isro.owl#"
+         xmlns:isro3="http://www.robot-arbi.kr/ontologies/isro_social.owl#">
+
+<owl:Ontology rdf:about="http://www.robot-arbi.kr/ontologies/hyu_service.owl">
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl/1.2.1"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl/1.0.0"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_map.owl/1.0.0"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl/1.0.0"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl/1.0.1"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_map.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/hyu_service.owl"/>
+</owl:Ontology>
+
+<know:Cabinet-PieceOfFurniture rdf:about="#Cabinet001">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdfs:label>서랍장 첫째칸</rdfs:label>
+</know:Cabinet-PieceOfFurniture>
+
+<know:Cabinet-PieceOfFurniture rdf:about="#Cabinet002">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdfs:label>서랍장 둘째칸</rdfs:label>
+</know:Cabinet-PieceOfFurniture>
+
+<isro:DigestiveMedicine rdf:about="#DigestiveMedicine001">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro2:hasLocation rdf:resource="#Cabinet002"/>
+  <rdfs:label>소화제</rdfs:label>
+</isro:DigestiveMedicine>
+
+<isro:HeadachePill rdf:about="#HeadachePill001">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro2:hasLocation rdf:resource="#Cabinet001"/>
+  <isro:relatedSymptoms rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_headache"/>
+  <rdfs:label>두통약</rdfs:label>
+  <isro:maximumDailyDose rdf:datatype="http://www.w3.org/2001/XMLSchema#int">8</isro:maximumDailyDose>
+</isro:HeadachePill>
+
+<rdf:Description rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_headache">
+  <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
+</rdf:Description>
+
+<know:Person rdf:about="#Person001">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AdultAge"/>
+  <isro:getDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_headache"/>
+  <rdfs:label>이은수</rdfs:label>
+  <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:faceID>
+  <isro3:hasAppellation>연구원님</isro3:hasAppellation>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</isro3:visitFreq>
+  <isro:help_avail rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isro:help_avail>
+  <know:fullName>이은수</know:fullName>
+</know:Person>
+
+<know:Person rdf:about="#Person002">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AdultAge"/>
+  <rdfs:label>조건희</rdfs:label>
+  <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</isro3:faceID>
+  <isro3:hasAppellation>연구원님</isro3:hasAppellation>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
+  <know:fullName>조건희</know:fullName>
+</know:Person>
+
+<rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#startTime">
+  <rdfs:label>시작시간</rdfs:label>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#targetPerson">
+  <rdfs:label>대상인물</rdfs:label>
+</rdf:Description>
+
+<isro:MedicalRecord rdf:about="#medicalrecord1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
+  <know:startTime rdf:resource="#TimePoint_1631636791.1036713"/>
+  <isro2:targetPerson rdf:resource="#Person001"/>
+</isro:MedicalRecord>
+
+<know:TimePoint rdf:about="#TimePoint_1631636791.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</know:TimePoint>
+
+
+</rdf:RDF>

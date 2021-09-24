@@ -1,0 +1,19 @@
+{
+  "header": {
+    "source": "planning",
+    "target": ["dialog"],
+    "content": ["dialog_generation"],
+    "id": 2
+  },
+  "dialog_generation":{
+    "intent": "medical_reception",
+    "human_speech": "머리가 좀 아프네",
+    "social_context": {
+      "name": "이은수",
+      "appellation": "연구원님",
+      "disease_name": "",
+      "disease_status": "",
+      "help_avail": true
+    }
+  }
+}

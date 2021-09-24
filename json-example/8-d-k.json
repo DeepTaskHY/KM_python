@@ -1,0 +1,16 @@
+{
+  "header": {
+    "source": "knowledge",
+    "target": ["dialog"],
+    "content": ["knowledge_inference"],
+    "id": 3
+  },
+  "knowledge_inference": {
+    "type": "entity",
+    "data": {
+      "user": "이은수",
+      "event": "의료기록",
+      "timepoint": "previous"
+    }
+  }
+}

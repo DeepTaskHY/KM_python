@@ -1,0 +1,19 @@
+{
+  "header": {
+    "source": "planning",
+    "target": ["dialog"],
+    "content": "dialog_generation",
+    "id": 2
+  },
+  "dialog_generation": {
+    "intent": "medical_reception",
+    "human_speech": "아까 약 먹었는데, 아직도 아픈 거 같아",
+    "social_context": {
+      "name": "이은수",
+      "appellation": "연구원님",
+      "disease_name": "두통",
+      "disease_status": "",
+      "help_avail": true
+    }
+  }
+}
