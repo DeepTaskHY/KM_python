@@ -42,8 +42,8 @@ def stt(audio_file):
     data = open(audio_file, 'rb')  # STT를 진행하고자 하는 음성 파일
     url = 'https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=Kor'
 
-    client_id = 'jqhycv20tf'  # 인증 정보의 Client ID
-    client_secret = 'EFh6RhwU8DDuLX3O1qaSCqc2jRgu2P6asUl6wmiR'  # 인증 정보의 Client Secret
+    client_id = ''  # 인증 정보의 Client ID
+    client_secret = ''  # 인증 정보의 Client Secret
 
     headers = {
         'Content-Type': 'application/octet-stream',  # Fix

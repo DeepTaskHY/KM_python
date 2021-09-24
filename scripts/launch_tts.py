@@ -26,8 +26,8 @@ def tts(arg):
     # response = urllib.request.urlopen(request, data=data.encode('utf-8'), headers)
     # rescode = response.getcode()
 
-    client_id = 'jqhycv20tf'  # 인증 정보의 Client ID
-    client_secret = 'EFh6RhwU8DDuLX3O1qaSCqc2jRgu2P6asUl6wmiR'  # 인증 정보의 Client Secret
+    client_id = ''  # 인증 정보의 Client ID
+    client_secret = ''  # 인증 정보의 Client Secret
 
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',  # Fix
