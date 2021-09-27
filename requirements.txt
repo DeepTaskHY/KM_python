@@ -1,2 +1,3 @@
+Cython==0.29.24
 Owlready2==0.34
 https://github.com/DeepTaskHY/ROS/archive/main.zip
