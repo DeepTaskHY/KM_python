@@ -7,6 +7,8 @@ from owlready2 import *
 import re
 from dtroslib.helpers import get_package_path
 
+test_path = get_package_path('km')
+# test_path = '..'
 
 
 def is_korean(text):
@@ -16,7 +18,7 @@ def is_korean(text):
 class KnowledgeManager:
 
     def __init__(self,
-                 owl_file: str=get_package_path('km')+'/owl2/hyu_service.owl'):
+                 owl_file: str = test_path + '/owl2/hyu_service.owl'):
         self.base_owl = owl_file
         self.base_dir = os.path.dirname(self.base_owl)
         self.owlfile_list = glob(os.path.join(self.base_dir, '*.owl'))
