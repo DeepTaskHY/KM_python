@@ -97,7 +97,7 @@ class DTNode(NodeBase, metaclass=ABCMeta):
         # Check receiver
         source = header['source']
         targets = header['target']
-        
+
         if not targets:
             return
 
@@ -118,7 +118,7 @@ class DTNode(NodeBase, metaclass=ABCMeta):
 
         # Process received message
         rospy.loginfo('Received message: \n{}'.format(json.dumps(received_message, ensure_ascii=False, indent="\t")))
-        
+
         content_names = header['content']
 
         if not content_names:
@@ -170,12 +170,10 @@ class DTNode(NodeBase, metaclass=ABCMeta):
 
         pass
 
+
 # Node of Knowledge Manager
 class KMNode(DTNode):
-
-    def __init__(self,
-                 *args, **kwargs):
-
+    def __init__(self, *args, **kwargs):
         super(KMNode, self).__init__(publish_message='/taskCompletion',
                                      subscribe_message='/taskExecution',
                                      *args, **kwargs)
