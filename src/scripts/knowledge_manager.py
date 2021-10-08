@@ -6,7 +6,9 @@ import time, os, copy
 from glob import glob
 from owlready2 import *
 import re
+import rospkg
 
+PACKAGE_PATH = rospkg.RosPack().get_path('km')
 
 def is_korean(text):
     kor_re = re.compile(r"[ㄱ-ㅣ가-힣]")
@@ -16,7 +18,7 @@ def is_korean(text):
 class KnowledgeManager:
 
     def __init__(self,
-                 owl_file: str = '..\owl_test\hyu_service.owl'):
+                 owl_file: str = PACKAGE_PATH + '\owl_test\hyu_service.owl'):
 
         self.base_owl = owl_file
         self.base_dir = os.path.dirname(self.base_owl)
