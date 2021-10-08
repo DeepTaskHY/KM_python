@@ -1,14 +1,12 @@
-import json
-from abc import *
-from typing import Dict, Tuple
-
 import time, os, copy
 from glob import glob
 from owlready2 import *
 import re
+import numpy as np
 import rospkg
 
 PACKAGE_PATH = rospkg.RosPack().get_path('km')
+# PACKAGE_PATH = '..'
 
 
 def is_korean(text):
@@ -102,7 +100,8 @@ class KnowledgeManager:
             self.km = knowledge_manager
 
         def simple_query(self, 
-                         data: list) -> list:
+                         data: list,
+                         timestamp: float) -> list:
 
             vars_list = list()
             where_phrase = list()
@@ -129,23 +128,25 @@ class KnowledgeManager:
                     sparql_result[i] = sparql_result[i].name
 
                 simple_query_result.append(self.km.postprocess_spo(data, sparql_result))
-            print(json.dumps(simple_query_result, ensure_ascii=False, indent=4))
+            # print(json.dumps(simple_query_result, ensure_ascii=False, indent=4))
             return simple_query_result
 
         def face_recognition(self,
-                             data: list) -> list:
+                             data: list,
+                             timestamp: float) -> list:
             for d in data:
                 f_id = d['face_id']
                 # print(self.km.knowledge_base)
                 user = self.km.knowledge_base.search(faceID=f_id)[0]
-                sc = self.social_context([{"target":user.name}])
+                sc = self.social_context([{"target": user.name}], timestamp)
                 d.update(target=sc[0]['target'])
                 d.update(social_context=sc[0]['social_context'])
 
             return data
 
         def social_context(self,
-                           data: list) -> list:
+                           data: list,
+                           timestamp: float = None) -> list:
             for d in data:
                 user = d['target']
 
@@ -162,54 +163,94 @@ class KnowledgeManager:
                 sc['sleep_status'] = user.sleepStatus[0]
                 sc['meal_menu'] = user.haveAMeal[0]
                 ms = user.hasMedicalStatus[0]
-                sc['disease_name'] = ms.getDisease[0].label[0]
-                sc['medical_checkup'] = self.medical_checkup(user)
+                sc['disease_name'] = ms.relatedDisease[0].label[0]
+                sc['medical_checkup'] = self.medical_checkup(user, timestamp)
                 d.update(social_context=sc)
 
             return data
 
         def medical_checkup(self,
-                            user):
+                            user,
+                            timestamp: float = None) -> dict:
+            
+            mr_list = self.km.knowledge_base.search(type=self.km.onto_dict['isro_medical'].MedicalRecord,
+                                                    targetPerson=user)
+            tp_list = [float(mr.name.split('_')[-1]) for mr in mr_list]
+            tp_arg = np.argsort(tp_list)
+
+            recent_n = 2
+            old_record = [0 for i in range(4)]
+
+            for mr in np.array(mr_list)[tp_arg][:recent_n]:
+                old_record[0] += float(mr.systolicBloodPressureLevel[0])
+                old_record[1] += float(mr.diastolicBloodPressureLevel[0])
+                old_record[2] += float(mr.bloodSugarLevel[0])
+                old_record[3] += float(mr.cholesterolLevel[0])
+            old_record = [r/recent_n for r in old_record]
 
             ms = user.hasMedicalStatus[0]
-            bp_systolic = float(ms.systolicBloodPressureLevel[0])
-            bp_diastolic = float(ms.diastolicBloodPressureLevel[0])
-            bs = float(ms.bloodSugarLevel[0])
-            cl = float(ms.cholesterolLevel[0])
-
-            if bp_systolic > float(self.km.onto_dict['isro_medical']._SystolicBloodPressureLevel.upperLimit[0]):
-                bp_systolic_range = "high"
-            elif bp_systolic < float(self.km.onto_dict['isro_medical']._SystolicBloodPressureLevel.lowerLimit[0]):
-                bp_systolic_range = "low"
-            else:
-                bp_systolic_range = "normal"
-
-            if bp_diastolic > float(self.km.onto_dict['isro_medical']._DiastolicBloodPressureLevel.upperLimit[0]):
-                bp_diastolic_range = "high"
-            elif bp_diastolic < float(self.km.onto_dict['isro_medical']._DiastolicBloodPressureLevel.lowerLimit[0]):
-                bp_diastolic_range = "low"
-            else:
-                bp_diastolic_range = "normal"
-
-            if cl > float(self.km.onto_dict['isro_medical']._CholesterolLevel.upperLimit[0]):
-                cl_range = "high"
-            elif cl < float(self.km.onto_dict['isro_medical']._CholesterolLevel.lowerLimit[0]):
-                cl_range = "low"
-            else:
-                cl_range = "normal"
-
-            if bs > float(self.km.onto_dict['isro_medical']._BloodSugarLevel.upperLimit[0]):
-                bs_range = "high"
-            elif bs < float(self.km.onto_dict['isro_medical']._BloodSugarLevel.lowerLimit[0]):
-                bs_range = "low"
-            else:
-                bs_range = "normal"
-
             med_check = dict()
-            med_check['systolic_blood_pressure'] = {"range":bp_systolic_range}
-            med_check['diastolic_blood_pressure'] = {"range": bp_diastolic_range}
-            med_check['cholesterol_level'] = {"range": cl_range}
-            med_check['blood_sugar_level'] = {"range": bs_range}
+
+            sbp = float(ms.systolicBloodPressureLevel[0])
+            med_check['systolic_blood_pressure'] = dict()
+            if sbp - old_record[0] > 5:
+                med_check['systolic_blood_pressure'].update(state="increasing")
+            elif sbp - old_record[0] > -5:
+                med_check['systolic_blood_pressure'].update(state="maintaining")
+            else:
+                med_check['systolic_blood_pressure'].update(state="decreasing")
+
+            if sbp > float(self.km.onto_dict['isro_medical']._SystolicBloodPressureLevel.upperLimit[0]):
+                med_check['systolic_blood_pressure'].update(range="high")
+            elif sbp < float(self.km.onto_dict['isro_medical']._SystolicBloodPressureLevel.lowerLimit[0]):
+                med_check['systolic_blood_pressure'].update(range="low")
+            else:
+                med_check['systolic_blood_pressure'].update(range="normal")
+
+            dbp = float(ms.diastolicBloodPressureLevel[0])
+            med_check['diastolic_blood_pressure'] = dict()
+            if dbp - old_record[1] > 5:
+                med_check['diastolic_blood_pressure'].update(state="increasing")
+            elif dbp - old_record[1] > -5:
+                med_check['diastolic_blood_pressure'].update(state="maintaining")
+            else:
+                med_check['diastolic_blood_pressure'].update(state="decreasing")
+            if dbp > float(self.km.onto_dict['isro_medical']._DiastolicBloodPressureLevel.upperLimit[0]):
+                med_check['diastolic_blood_pressure'].update(range="high")
+            elif dbp < float(self.km.onto_dict['isro_medical']._DiastolicBloodPressureLevel.lowerLimit[0]):
+                med_check['diastolic_blood_pressure'].update(range="low")
+            else:
+                med_check['diastolic_blood_pressure'].update(range="normal")
+
+            bs = float(ms.bloodSugarLevel[0])
+            med_check['blood_sugar_level'] = dict()
+            if dbp - old_record[2] > 5:
+                med_check['blood_sugar_level'].update(state="increasing")
+            elif dbp - old_record[2] > -5:
+                med_check['blood_sugar_level'].update(state="maintaining")
+            else:
+                med_check['blood_sugar_level'].update(state="decreasing")
+            if bs > float(self.km.onto_dict['isro_medical']._BloodSugarLevel.upperLimit[0]):
+                med_check['blood_sugar_level'].update(range="high")
+            elif bs < float(self.km.onto_dict['isro_medical']._BloodSugarLevel.lowerLimit[0]):
+                med_check['blood_sugar_level'].update(range="low")
+            else:
+                med_check['blood_sugar_level'].update(range="normal")
+
+            cl = float(ms.cholesterolLevel[0])
+            med_check['cholesterol_level'] = dict()
+            if dbp - old_record[3] > 5:
+                med_check['cholesterol_level'].update(state="increasing")
+            elif dbp - old_record[3] > -5:
+                med_check['cholesterol_level'].update(state="maintaining")
+            else:
+                med_check['cholesterol_level'].update(state="decreasing")
+            if cl > float(self.km.onto_dict['isro_medical']._CholesterolLevel.upperLimit[0]):
+                med_check['cholesterol_level'].update(range="high")
+            elif cl < float(self.km.onto_dict['isro_medical']._CholesterolLevel.lowerLimit[0]):
+                med_check['cholesterol_level'].update(range="low")
+            else:
+                med_check['cholesterol_level'].update(range="normal")
 
             return med_check
 
@@ -219,7 +260,8 @@ class KnowledgeManager:
             self.km = knowledge_manager
 
         def create(self,
-                   data: list):
+                   data: list,
+                   timestamp: float):
 
             for d in data:
                 subj = d['subject']
@@ -228,14 +270,16 @@ class KnowledgeManager:
                     if ont[subj] is not None:
                         subj = ont[subj]
 
-                # 인디비주얼 생성
-                new_i = subj(namespace=self.km.knowledge_base)
-
-                # RecordRelatedEvent의 하위클래스인 경우에는 시간 정보 저장
+                # RecordRelatedEvent의 하위클래스인 경우 인디비주얼 이름에 시간정보도 함께 보이도록 생성
                 if subj in list(self.km.onto_dict['isro'].RecordRelatedEvent.subclasses()):
+                    new_i = subj(namespace=self.km.knowledge_base, name=subj.name + '_' + str(timestamp))
                     time_point = self.km.onto_dict['knowrob'].TimePoint(namespace=self.km.knowledge_base,
-                                                                        name='TimePoint_' + str(time.time()))
+                                                                        name='TimePoint_' + str(timestamp))
                     new_i.startTime.append(time_point)
+
+                # Record 가 아닌 경우에는 그냥 생성
+                else:
+                    new_i = subj(namespace=self.km.knowledge_base)
 
                 # 새로 생성된 인디비주얼에 predicate 추가
                 for predicate in d['predicate']:
@@ -257,12 +301,19 @@ class KnowledgeManager:
 
                     getattr(new_i, p.name).append(o)
 
+                # MedicalRecord 인 경우 사람의 hasMedicalStatus 갱신
+                if subj == self.km.onto_dict['isro_medical'].MedicalRecord:
+                    target_person = new_i.targetPerson[0]
+                    getattr(target_person, 'hasMedicalStatus').pop(0)
+                    getattr(target_person, 'hasMedicalStatus').append(new_i)
+
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
             return None
 
         def update(self,
-                   data: list):
+                   data: list,
+                   timestamp: float = None):
             for d in data:
                 subj = d['subject']
                 for _, ont in self.km.onto_dict.items():
@@ -290,13 +341,13 @@ class KnowledgeManager:
                         getattr(old_i, p.name).pop(0)
                     getattr(old_i, p.name).append(o)
 
-
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
             return None
 
         def delete(self,
-                   data: list):
+                   data: list,
+                   timestamp: float):
 
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
@@ -308,7 +359,8 @@ class KnowledgeManager:
             self.km = knowledge_manager
 
         def entity(self,
-                   data: dict) -> list:
+                   data: list,
+                   timestamp: float) -> list:
 
             result = list()
 

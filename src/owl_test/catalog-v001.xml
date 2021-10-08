@@ -6,11 +6,11 @@
     <uri id="Imports Wizard Entry" name="http://www.robot-arbi.kr/ontologies/isro_medical.owl/1.0.0" uri="isro_medical.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.robot-arbi.kr/ontologies/isro_social.owl/1.0.1" uri="isro_social.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1633622345683" name="http://www.robot-arbi.kr/ontologies/hyu_service.owl" uri="hyu_service.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1633622345683" name="http://www.robot-arbi.kr/ontologies/isro.owl" uri="isro.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1633622345683" name="http://www.robot-arbi.kr/ontologies/isro_cap.owl" uri="isro_cap.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1633622345683" name="http://www.robot-arbi.kr/ontologies/isro_map.owl" uri="isro_map.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1633622345683" name="http://www.robot-arbi.kr/ontologies/isro_medical.owl" uri="isro_medical.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1633622345683" name="http://www.robot-arbi.kr/ontologies/isro_social.owl" uri="isro_social.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1633677433945" name="http://www.robot-arbi.kr/ontologies/hyu_service.owl" uri="hyu_service.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1633677433945" name="http://www.robot-arbi.kr/ontologies/isro.owl" uri="isro.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1633677433945" name="http://www.robot-arbi.kr/ontologies/isro_cap.owl" uri="isro_cap.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1633677433945" name="http://www.robot-arbi.kr/ontologies/isro_map.owl" uri="isro_map.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1633677433945" name="http://www.robot-arbi.kr/ontologies/isro_medical.owl" uri="isro_medical.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1633677433945" name="http://www.robot-arbi.kr/ontologies/isro_social.owl" uri="isro_social.owl"/>
     </group>
 </catalog>

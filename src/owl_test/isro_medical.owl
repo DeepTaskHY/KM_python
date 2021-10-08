@@ -59,6 +59,12 @@
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#relatedDisease -->
+
+    <owl:ObjectProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#relatedDisease"/>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#relatedMedicine -->
 
     <owl:ObjectProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#relatedMedicine">

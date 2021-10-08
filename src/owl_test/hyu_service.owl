@@ -60,19 +60,9 @@
   <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
 </rdf:Description>
 
-<isro:MedicalStatus rdf:about="#MedicalStatus001">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isro2:targetPerson rdf:resource="#Person001"/>
-  <isro:getDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
-  <isro:bloodSugarLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99</isro:bloodSugarLevel>
-  <isro:cholesterolLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">210</isro:cholesterolLevel>
-  <isro:diastolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</isro:diastolicBloodPressureLevel>
-  <isro:systolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">140</isro:systolicBloodPressureLevel>
-</isro:MedicalStatus>
-
 <know:Person rdf:about="#Person001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isro:hasMedicalStatus rdf:resource="#MedicalStatus001"/>
+  <isro:hasMedicalStatus rdf:resource="#MedicalRecord_1631989900.1036713"/>
   <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
   <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
   <rdfs:label>이병현</rdfs:label>
@@ -80,10 +70,59 @@
   <isro:help_avail rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isro:help_avail>
   <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:faceID>
   <isro3:hasAppellation>어르신</isro3:hasAppellation>
-  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</isro3:visitFreq>
-  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro3:sleepStatus>
   <isro3:haveAMeal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">설렁탕</isro3:haveAMeal>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro3:sleepStatus>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</isro3:visitFreq>
 </know:Person>
+
+<isro:MedicalRecord rdf:about="#MedicalRecord_1631989900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631989900.1036713"/>
+  <isro2:targetPerson rdf:resource="#Person001"/>
+  <isro:relatedDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
+  <isro:bloodSugarLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">70</isro:bloodSugarLevel>
+  <isro:cholesterolLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">190</isro:cholesterolLevel>
+  <isro:diastolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">80</isro:diastolicBloodPressureLevel>
+  <isro:systolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</isro:systolicBloodPressureLevel>
+</isro:MedicalRecord>
+
+<know:TimePoint rdf:about="#TimePoint_1631989900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</know:TimePoint>
+
+<isro:MedicalRecord rdf:about="#MedicalRecord_1631639900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631639900.1036713"/>
+  <isro2:targetPerson rdf:resource="#Person001"/>
+  <isro:relatedDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
+  <isro:bloodSugarLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">80</isro:bloodSugarLevel>
+  <isro:cholesterolLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</isro:cholesterolLevel>
+  <isro:diastolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</isro:diastolicBloodPressureLevel>
+  <isro:systolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">110</isro:systolicBloodPressureLevel>
+</isro:MedicalRecord>
+
+<know:TimePoint rdf:about="#TimePoint_1631639900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</know:TimePoint>
+
+<isro:MedicalRecord rdf:about="#MedicalRecord_1631636900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631636900.1036713"/>
+  <isro2:targetPerson rdf:resource="#Person001"/>
+  <isro:relatedDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
+  <isro:bloodSugarLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99</isro:bloodSugarLevel>
+  <isro:cholesterolLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">240</isro:cholesterolLevel>
+  <isro:diastolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">92</isro:diastolicBloodPressureLevel>
+  <isro:systolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">134</isro:systolicBloodPressureLevel>
+</isro:MedicalRecord>
+
+<know:TimePoint rdf:about="#TimePoint_1631636900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</know:TimePoint>
+
+<know:TimePoint rdf:about="#TimePoint_1631636791.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</know:TimePoint>
 
 <isro2:Silbot rdf:about="#Silbot001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -94,16 +133,45 @@
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
 </isro3:SpeechRecord>
 
-<know:TimePoint rdf:about="#TimePoint_1631636791.1036713">
+<isro3:SpeechRecord rdf:about="#speechrecord1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</know:TimePoint>
+  <know:startTime rdf:resource="#TimePoint_1631636900.1036713"/>
+  <isro2:hasSpeaker rdf:resource="#Silbot001"/>
+  <isro2:speakTo rdf:resource="#Person001"/>
+  <isro3:speechContent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">안녕하세요 이병현 어르신</isro3:speechContent>
+</isro3:SpeechRecord>
 
-<isro:MedicalRecord rdf:about="#medicalrecord1">
+<isro3:SpeechRecord rdf:about="#speechrecord2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <know:startTime rdf:resource="#TimePoint_1631636791.1036713"/>
-  <isro2:targetPerson rdf:resource="#Person001"/>
-  <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
-</isro:MedicalRecord>
+  <know:startTime rdf:resource="#TimePoint_1631636900.1036713"/>
+  <isro2:hasSpeaker rdf:resource="#Silbot001"/>
+  <isro2:speakTo rdf:resource="#Person001"/>
+  <isro3:speechContent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">안녕하세요 이병현 어르신</isro3:speechContent>
+</isro3:SpeechRecord>
+
+<isro3:SpeechRecord rdf:about="#SpeechRecord_1631636900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631636900.1036713"/>
+  <isro2:hasSpeaker rdf:resource="#Silbot001"/>
+  <isro2:speakTo rdf:resource="#Person001"/>
+  <isro3:speechContent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">안녕하세요 이병현 어르신</isro3:speechContent>
+</isro3:SpeechRecord>
+
+<isro3:SpeechRecord rdf:about="#SpeechRecord_1631639900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631639900.1036713"/>
+  <isro2:hasSpeaker rdf:resource="#Silbot001"/>
+  <isro2:speakTo rdf:resource="#Person001"/>
+  <isro3:speechContent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">안녕하세요 이병현 어르신</isro3:speechContent>
+</isro3:SpeechRecord>
+
+<isro3:SpeechRecord rdf:about="#SpeechRecord_1631989900.1036713">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631989900.1036713"/>
+  <isro2:hasSpeaker rdf:resource="#Silbot001"/>
+  <isro2:speakTo rdf:resource="#Person001"/>
+  <isro3:speechContent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">안녕하세요 이병현 어르신</isro3:speechContent>
+</isro3:SpeechRecord>
 
 
 </rdf:RDF>
