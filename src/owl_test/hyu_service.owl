@@ -11,18 +11,26 @@
          xmlns:isro3="http://www.robot-arbi.kr/ontologies/isro_social.owl#">
 
 <owl:Ontology rdf:about="http://www.robot-arbi.kr/ontologies/hyu_service.owl">
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/hyu_service.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_map.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl"/>
+  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl"/>
   <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl/1.2.1"/>
   <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl/1.0.0"/>
   <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_map.owl/1.0.0"/>
   <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl/1.0.0"/>
   <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl/1.0.1"/>
-  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl"/>
-  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl"/>
-  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_map.owl"/>
-  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl"/>
-  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl"/>
-  <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/hyu_service.owl"/>
 </owl:Ontology>
+
+<rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#startTime">
+  <rdfs:label>시작시간</rdfs:label>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#targetPerson">
+  <rdfs:label>대상인물</rdfs:label>
+</rdf:Description>
 
 <know:Cabinet-PieceOfFurniture rdf:about="#Cabinet001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -43,57 +51,59 @@
 <isro:HeadachePill rdf:about="#HeadachePill001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isro2:hasLocation rdf:resource="#Cabinet001"/>
-  <isro:relatedSymptoms rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_headache"/>
+  <isro:relatedSymptoms rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_Headache"/>
   <rdfs:label>두통약</rdfs:label>
   <isro:maximumDailyDose rdf:datatype="http://www.w3.org/2001/XMLSchema#int">8</isro:maximumDailyDose>
 </isro:HeadachePill>
 
-<rdf:Description rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_headache">
+<rdf:Description rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_Headache">
   <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
 </rdf:Description>
+
+<isro:MedicalStatus rdf:about="#MedicalStatus001">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro2:targetPerson rdf:resource="#Person001"/>
+  <isro:getDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
+  <isro:bloodSugarLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99</isro:bloodSugarLevel>
+  <isro:cholesterolLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">210</isro:cholesterolLevel>
+  <isro:diastolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</isro:diastolicBloodPressureLevel>
+  <isro:systolicBloodPressureLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">140</isro:systolicBloodPressureLevel>
+</isro:MedicalStatus>
 
 <know:Person rdf:about="#Person001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro:hasMedicalStatus rdf:resource="#MedicalStatus001"/>
   <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
-  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AdultAge"/>
-  <isro:getDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_headache"/>
-  <rdfs:label>이은수</rdfs:label>
-  <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:faceID>
-  <isro3:hasAppellation>연구원님</isro3:hasAppellation>
-  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</isro3:visitFreq>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
+  <rdfs:label>이병현</rdfs:label>
+  <know:fullName>이병현</know:fullName>
   <isro:help_avail rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isro:help_avail>
-  <know:fullName>이은수</know:fullName>
+  <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:faceID>
+  <isro3:hasAppellation>어르신</isro3:hasAppellation>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</isro3:visitFreq>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro3:sleepStatus>
+  <isro3:haveAMeal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">설렁탕</isro3:haveAMeal>
 </know:Person>
 
-<know:Person rdf:about="#Person002">
+<isro2:Silbot rdf:about="#Silbot001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
-  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AdultAge"/>
-  <rdfs:label>조건희</rdfs:label>
-  <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</isro3:faceID>
-  <isro3:hasAppellation>연구원님</isro3:hasAppellation>
-  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
-  <know:fullName>조건희</know:fullName>
-</know:Person>
+  <rdfs:label>실벗</rdfs:label>
+</isro2:Silbot>
 
-<rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#startTime">
-  <rdfs:label>시작시간</rdfs:label>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#targetPerson">
-  <rdfs:label>대상인물</rdfs:label>
-</rdf:Description>
-
-<isro:MedicalRecord rdf:about="#medicalrecord1">
+<isro3:SpeechRecord rdf:about="#SpeechRecord0001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
-  <know:startTime rdf:resource="#TimePoint_1631636791.1036713"/>
-  <isro2:targetPerson rdf:resource="#Person001"/>
-</isro:MedicalRecord>
+</isro3:SpeechRecord>
 
 <know:TimePoint rdf:about="#TimePoint_1631636791.1036713">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
 </know:TimePoint>
+
+<isro:MedicalRecord rdf:about="#medicalrecord1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1631636791.1036713"/>
+  <isro2:targetPerson rdf:resource="#Person001"/>
+  <isro:relatedMedicine rdf:resource="#HeadachePill001"/>
+</isro:MedicalRecord>
 
 
 </rdf:RDF>

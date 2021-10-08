@@ -10,7 +10,8 @@
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
-     xmlns:computable="http://knowrob.org/kb/computable.owl#">
+     xmlns:computable="http://knowrob.org/kb/computable.owl#"
+     xmlns:isro_social="http://www.robot-arbi.kr/ontologies/isro_social.owl#">
     <owl:Ontology rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl">
         <owl:versionIRI rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl/1.0.1"/>
         <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl/1.2.1"/>
@@ -236,6 +237,18 @@
     <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#hasAppellation -->
 
     <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#hasAppellation"/>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#haveAMeal -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#haveAMeal"/>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#sleepStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#sleepStatus"/>
     
 
 
@@ -1059,6 +1072,14 @@
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#SpeechRecord -->
+
+    <owl:Class rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#SpeechRecord">
+        <rdfs:subClassOf rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#RecordRelatedEvent"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#Suggestion -->
 
     <owl:Class rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#Suggestion">
@@ -1164,6 +1185,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AgreementIntention">
         <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#AgreementIntention"/>
+        <rdfs:label>수락</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1176,10 +1198,52 @@
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_ApologyIntention -->
+
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_ApologyIntention">
+        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#ApologyIntention"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_AppointmentIntention -->
+
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AppointmentIntention">
+        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#AppointmentIntention"/>
+        <rdfs:label>약속</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_DeclarativeIntention -->
 
     <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_DeclarativeIntention">
         <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#DeclarativeIntention"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_DisagreementIntention -->
+
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_DisagreementIntention">
+        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#DisagreementIntention"/>
+        <rdfs:label>거부</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_EncouragementIntention -->
+
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_EncouragementIntention">
+        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#EncouragementIntention"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_ExplanationIntention -->
+
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_ExplanationIntention">
+        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#ExplanationIntention"/>
     </owl:NamedIndividual>
     
 
@@ -1201,10 +1265,20 @@
     
 
 
-    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_InformationDelivery -->
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_GreetingIntention -->
 
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_InformationDelivery">
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_GreetingIntention">
+        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#GreetingIntention"/>
+        <rdfs:label>인사</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_social.owl#_InformationDeliveryIntention -->
+
+    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_InformationDeliveryIntention">
         <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#InformationDeliveryIntention"/>
+        <rdfs:label>정보전달</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1213,6 +1287,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_InquiryIntention">
         <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#InquiryIntention"/>
+        <rdfs:label>질문</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1255,6 +1330,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_social.owl#_RequestIntention">
         <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#RequestIntention"/>
+        <rdfs:label>요청</rdfs:label>
     </owl:NamedIndividual>
     
 

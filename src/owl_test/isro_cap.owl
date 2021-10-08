@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.robot-arbi.kr/ontologies/isro_cap.owl#"
      xml:base="http://www.robot-arbi.kr/ontologies/isro_cap.owl"
-     xmlns:srdl2-cap="http://knowrob.org/kb/srdl2-cap.owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:isro="http://www.robot-arbi.kr/ontologies/isro.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:srdl2-comp="http://knowrob.org/kb/srdl2-comp.owl#"
+     xmlns:isro="http://www.robot-arbi.kr/ontologies/isro.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:computable="http://knowrob.org/kb/computable.owl#">
+     xmlns:srdl2-cap="http://knowrob.org/kb/srdl2-cap.owl#"
+     xmlns:computable="http://knowrob.org/kb/computable.owl#"
+     xmlns:srdl2-comp="http://knowrob.org/kb/srdl2-comp.owl#">
     <owl:Ontology rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl">
         <owl:versionIRI rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl/1.0.0"/>
         <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl/1.2.1"/>
@@ -526,153 +526,9 @@
     <!-- http://www.robot-arbi.kr/ontologies/isro.owl#WheelDropSensor -->
 
     <owl:Class rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#WheelDropSensor"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#BaseMotionCapability -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#BaseMotionCapability">
-        <rdf:type rdf:resource="http://knowrob.org/kb/srdl2-cap.owl#BaseMotionCapability"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#HumanRecognitionCapability -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#HumanRecognitionCapability">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#HumanRecognitionCapability"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#cob_people_detection"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#kinect1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#NavigationCapability -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#NavigationCapability">
-        <rdf:type rdf:resource="http://knowrob.org/kb/srdl2-cap.owl#NavigationCapability"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#hokuyo"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#tiltmotor"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#turtlebot_navigation"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#STTCapability -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#STTCapability">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#STTCapability"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#jabra_stealth"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#voiceware"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#TTSCapability -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#TTSCapability">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#TTSCapability"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#google_speech"/>
-        <srdl2-comp:dependsOnComponent rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#logitech_speakerZ120"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#Turtlebot2_001 -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#Turtlebot2_001">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#Turtlebot2"/>
-        <srdl2-cap:hasCapability rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#HumanRecognitionCapability"/>
-        <srdl2-cap:hasCapability rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#NavigationCapability"/>
-        <srdl2-cap:hasCapability rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#STTCapability"/>
-        <srdl2-cap:hasCapability rdf:resource="http://www.robot-arbi.kr/ontologies/isro_cap.owl#TTSCapability"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#cob_people_detection -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#cob_people_detection">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#HumanRecognitionComponent"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#google_speech -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#google_speech">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#TTSComponent"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#hokuyo -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#hokuyo">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#Hokuyo"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#jabra_stealth -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#jabra_stealth">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#Microphone"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#kinect1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#kinect1">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#Kinect"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#logitech_speakerZ120 -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#logitech_speakerZ120">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#Speaker"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#tiltmotor -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#tiltmotor">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#TiltMotor"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#turtlebot_navigation -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#turtlebot_navigation">
-        <rdf:type rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#NavigationComponent"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_cap.owl#voiceware -->
-
-    <owl:NamedIndividual rdf:about="http://www.robot-arbi.kr/ontologies/isro_cap.owl#voiceware">
-        <rdf:type rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#STTComponent"/>
-    </owl:NamedIndividual>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 

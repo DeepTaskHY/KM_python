@@ -2,7 +2,7 @@ from abc import *
 from typing import Dict, Tuple
 import time, json
 
-from dt_manager import KnowledgeManager
+from knowledge_manager import KnowledgeManager
 
 import rospy
 from std_msgs.msg import String
@@ -172,7 +172,6 @@ class DTNode(NodeBase, metaclass=ABCMeta):
 
 # Node of Knowledge Manager
 class KMNode(DTNode):
-    
 
     def __init__(self,
                  *args, **kwargs):
@@ -208,21 +207,3 @@ class KMNode(DTNode):
 
         return targets, generated_content_names, generated_contents
 
-
-# class PMNode(DTNode):
-#     def __init__(self,
-#                  *args, **kwargs):
-
-#         super(PMNode, self).__init__(publish_message='/taskExecution',
-#                                      subscribe_message='/taskCompletion',
-#                                      *args, **kwargs)
-
-#         self.source_name = 'planning'
-#         rospy.loginfo('Start PM')
-    
-#     def generate_content(self,
-#                          source: str,
-#                          content_names: list,
-#                          contents: Dict[str, dict]) -> Tuple[list, list, Dict[str, dict]]:
-
-#         return None, None, None

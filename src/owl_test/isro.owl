@@ -5,6 +5,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:isro="http://www.robot-arbi.kr/ontologies/isro.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
      xmlns:computable="http://knowrob.org/kb/computable.owl#">
@@ -3247,6 +3248,12 @@ Semantics: The link pointed to is an end link (= the last link in kinematic chai
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro.owl#hasSpeaker -->
+
+    <owl:ObjectProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#hasSpeaker"/>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro.owl#hasStudent -->
 
     <owl:ObjectProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#hasStudent">
@@ -5326,6 +5333,12 @@ See also xAxisPredicateOfSystem and yAxisPredicateOfSystem.</rdfs:comment>
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro.owl#lowerLimit -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#lowerLimit"/>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro.owl#name -->
 
     <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#name">
@@ -5379,6 +5392,18 @@ See also xAxisPredicateOfSystem and yAxisPredicateOfSystem.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.robot-arbi.kr/ontologies/isro.owl#Speaking"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro.owl#unit -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#unit"/>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro.owl#upperLimit -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro.owl#upperLimit"/>
     
 
 
