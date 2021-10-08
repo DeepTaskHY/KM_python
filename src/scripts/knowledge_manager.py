@@ -10,6 +10,7 @@ import rospkg
 
 PACKAGE_PATH = rospkg.RosPack().get_path('km')
 
+
 def is_korean(text):
     kor_re = re.compile(r"[ㄱ-ㅣ가-힣]")
     return kor_re.search(text) is not None
@@ -158,6 +159,8 @@ class KnowledgeManager:
                 sc['appellation'] = user.hasAppellation[0]
                 sc['help_avail'] = user.help_avail[0]
                 sc['visitFreq'] = user.visitFreq[0]
+                sc['sleep_status'] = user.sleepStatus[0]
+                sc['meal_menu'] = user.haveAMeal[0]
                 ms = user.hasMedicalStatus[0]
                 sc['disease_name'] = ms.getDisease[0].label[0]
                 sc['medical_checkup'] = self.medical_checkup(user)
