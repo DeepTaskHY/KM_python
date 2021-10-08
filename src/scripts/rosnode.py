@@ -9,12 +9,10 @@ from knowledge_manager import KnowledgeManager
 from dtroslib.ros import DTNode
 
 
+
 # Node of Knowledge Manager
 class KMNode(DTNode):
-
-    def __init__(self,
-                 *args, **kwargs):
-
+    def __init__(self, *args, **kwargs):
         super(KMNode, self).__init__(publish_message='/taskCompletion',
                                      subscribe_message='/taskExecution',
                                      *args, **kwargs)

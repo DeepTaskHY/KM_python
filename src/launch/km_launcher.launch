@@ -1,3 +1,3 @@
 <launch>
-    <node pkg="km" name="KM_node" type="launch_km.py" output="screen"/>
+    <node pkg="km" name="KM_node" type="launcher.py" output="screen"/>
 </launch>

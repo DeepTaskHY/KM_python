@@ -48,7 +48,7 @@ class KnowledgeManager:
 
         knowledge_base = self.onto_dict[self.prefix]
         knowledge_base.imported_ontologies = [self.onto_dict[self.getPrefix(owlfile)] for owlfile in self.owlfile_list]
-        
+
         for i in knowledge_base.individuals():
             i.get_properties()
 
@@ -265,7 +265,7 @@ class KnowledgeManager:
 
             for d in data:
                 subj = d['subject']
-                
+
                 for _, ont in self.km.onto_dict.items():
                     if ont[subj] is not None:
                         subj = ont[subj]
@@ -373,7 +373,7 @@ class KnowledgeManager:
                 for event in events:
                     event_time = float(event.startTime[0].name.split('_')[-1])
                     if time.time() - event_time > 0:
-                        
+
                         s = event.name
                         props = event.get_properties()
                         for prop in props:
@@ -384,17 +384,17 @@ class KnowledgeManager:
                                 triple['p'] = prop.label[0]
                             except ValueError:
                                 triple['p'] = prop.name
-                            
+
                             try:
                                 triple['o'] = getattr(event, prop.name)[0].label[0]
                             except ValueError:
                                 triple['o'] = getattr(event, prop.name)[0].name
-                        
+
                             result.append(triple)
-            
+
             elif time_point == 'next':
                 pass
-            
+
             data['result'] = result
 
             return data
