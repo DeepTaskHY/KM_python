@@ -1,3 +1,6 @@
+#!/usr/bin/python3.6
+# -*- coding: utf-8 -*-
+
 import time, os, copy
 from glob import glob
 from owlready2 import *
@@ -17,7 +20,7 @@ def is_korean(text):
 class KnowledgeManager:
 
     def __init__(self,
-                 owl_file: str = PACKAGE_PATH + '\owl_test\hyu_service.owl'):
+                 owl_file: str = PACKAGE_PATH + '/owl_test/hyu_service.owl'):
 
         self.base_owl = owl_file
         self.base_dir = os.path.dirname(self.base_owl)
@@ -99,7 +102,7 @@ class KnowledgeManager:
         def __init__(self, knowledge_manager):
             self.km = knowledge_manager
 
-        def simple_query(self, 
+        def simple_query(self,
                          data: list,
                          timestamp: float) -> list:
 
@@ -172,7 +175,7 @@ class KnowledgeManager:
         def medical_checkup(self,
                             user,
                             timestamp: float = None) -> dict:
-            
+
             mr_list = self.km.knowledge_base.search(type=self.km.onto_dict['isro_medical'].MedicalRecord,
                                                     targetPerson=user)
             tp_list = [float(mr.name.split('_')[-1]) for mr in mr_list]
