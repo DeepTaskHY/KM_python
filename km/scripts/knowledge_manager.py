@@ -1,12 +1,12 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 import time, os, copy
 from glob import glob
 from owlready2 import *
 import re
 import numpy as np
 import rospkg
+
 
 PACKAGE_PATH = rospkg.RosPack().get_path('km')
 # PACKAGE_PATH = '..'

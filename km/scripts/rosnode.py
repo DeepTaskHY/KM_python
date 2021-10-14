@@ -1,16 +1,13 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
-from abc import *
-from typing import Dict, Tuple
-import time, json
-
+import json
 import rospy
-from std_msgs.msg import String
-
-from knowledge_manager import KnowledgeManager
+import time
+from abc import *
 from dtroslib.ros import DTNode
-
+from knowledge_manager import KnowledgeManager
+from std_msgs.msg import String
+from typing import Dict, Tuple
 
 
 # Node of Knowledge Manager
