@@ -153,6 +153,12 @@ class KnowledgeManager:
             for d in data:
                 user = d['target']
 
+                if is_korean(user):
+                    try:
+                        user = self.km.knowledge_base.search(label=user)[0]
+                    except IndexError:
+                        return data
+                        
                 if isinstance(user, str):
                     user = getattr(self.km.knowledge_base, user)
 
