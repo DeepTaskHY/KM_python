@@ -108,6 +108,18 @@
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageDrink -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageDrink"/>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageSmoke -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageSmoke"/>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#bloodPressureLevel -->
 
     <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#bloodPressureLevel">
@@ -143,17 +155,6 @@
     <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#hasHeight -->
 
     <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#hasHeight"/>
-
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageDrink -->
-
-    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageDrink"/>
-
-
-    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageSmoke -->
-
-    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageSmoke"/>
     
 
 
@@ -181,11 +182,23 @@
     
 
 
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#medicationGuide -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#medicationGuide"/>
+    
+
+
     <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#systolicBloodPressureLevel -->
 
     <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#systolicBloodPressureLevel">
         <rdfs:subPropertyOf rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#bloodPressureLevel"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#takingMedicine -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#takingMedicine"/>
     
 
 

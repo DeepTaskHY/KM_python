@@ -158,7 +158,7 @@ class KnowledgeManager:
                         user = self.km.knowledge_base.search(label=user)[0]
                     except IndexError:
                         return data
-                        
+
                 if isinstance(user, str):
                     user = getattr(self.km.knowledge_base, user)
 
@@ -176,6 +176,14 @@ class KnowledgeManager:
                 sc['medical_checkup'] = self.medical_checkup(user, timestamp)
                 sc['average_smoke'] = user.averageSmoke[0]
                 sc['average_drink'] = user.averageDrink[0]
+                med = ms.relatedMedicine[0]
+                m_dict = dict()
+                m_dict['medicine_name'] = med.name
+                m_dict['location'] = med.hasLocation[0].label[0]
+                m_dict['takingMedicine'] = med.takingMedicine[0]
+                m_dict['medication_guide'] = med.medicationGuide[0]
+                sc['medicine'] = m_dict
+
                 d.update(social_context=sc)
 
             return data
