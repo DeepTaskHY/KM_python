@@ -161,30 +161,32 @@ class KnowledgeManager:
 
                 if isinstance(user, str):
                     user = getattr(self.km.knowledge_base, user)
+                    
+                if user is not None:
+                    sc = dict()
+                    sc['name'] = user.fullName[0]
+                    sc['age'] = user.isAged[0].label[0]
+                    sc['gender'] = user.gender.label[0]
+                    sc['appellation'] = user.hasAppellation[0]
+                    sc['help_avail'] = user.help_avail[0]
+                    sc['visitFreq'] = user.visitFreq[0]
+                    sc['sleep_status'] = user.sleepStatus[0]
+                    sc['meal_menu'] = user.haveAMeal[0]
+                    ms = user.hasMedicalStatus[0]
+                    sc['disease_name'] = ms.relatedDisease[0].label[0]
+                    sc['disease_status'] = ms.diseaseStatus[0]
+                    sc['medical_checkup'] = self.medical_checkup(user, timestamp)
+                    sc['average_smoke'] = user.averageSmoke[0]
+                    sc['average_drink'] = user.averageDrink[0]
+                    med = ms.relatedMedicine[0]
+                    m_dict = dict()
+                    m_dict['medicine_name'] = med.name
+                    m_dict['location'] = med.hasLocation[0].label[0]
+                    m_dict['takingMedicine'] = med.takingMedicine[0]
+                    m_dict['medication_guide'] = med.medicationGuide[0]
+                    sc['medicine'] = m_dict
 
-                sc = dict()
-                sc['name'] = user.fullName[0]
-                sc['age'] = user.isAged[0].label[0]
-                sc['gender'] = user.gender.label[0]
-                sc['appellation'] = user.hasAppellation[0]
-                sc['help_avail'] = user.help_avail[0]
-                sc['visitFreq'] = user.visitFreq[0]
-                sc['sleep_status'] = user.sleepStatus[0]
-                sc['meal_menu'] = user.haveAMeal[0]
-                ms = user.hasMedicalStatus[0]
-                sc['disease_name'] = ms.relatedDisease[0].label[0]
-                sc['medical_checkup'] = self.medical_checkup(user, timestamp)
-                sc['average_smoke'] = user.averageSmoke[0]
-                sc['average_drink'] = user.averageDrink[0]
-                med = ms.relatedMedicine[0]
-                m_dict = dict()
-                m_dict['medicine_name'] = med.name
-                m_dict['location'] = med.hasLocation[0].label[0]
-                m_dict['takingMedicine'] = med.takingMedicine[0]
-                m_dict['medication_guide'] = med.medicationGuide[0]
-                sc['medicine'] = m_dict
-
-                d.update(social_context=sc)
+                    d.update(social_context=sc)
 
             return data
 

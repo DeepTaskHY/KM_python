@@ -121,6 +121,7 @@
         <know:startTime rdf:resource="http://www.robot-arbi.kr/ontologies/hyu_service.owl#TimePoint_1631636791.1036713"/>
         <isro2:targetPerson rdf:resource="http://www.robot-arbi.kr/ontologies/hyu_service.owl#Person001"/>
         <isro:relatedDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
+        <isro:diseaseStatus>positive</isro:diseaseStatus>
         <isro:relatedMedicine rdf:resource="http://www.robot-arbi.kr/ontologies/hyu_service.owl#Medicine001"/>
         <isro:bloodSugarLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99</isro:bloodSugarLevel>
         <isro:cholesterolLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">210</isro:cholesterolLevel>
@@ -149,8 +150,8 @@
         <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
         <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
         <know:fullName>이병현</know:fullName>
-        <isro:averageSmoke>1갑</isro:averageSmoke>
-        <isro:averageDrink>1병</isro:averageDrink>
+        <isro:smokeStatus>negative</isro:smokeStatus>
+        <isro:drinkStatus>negative</isro:drinkStatus>
         <isro:help_avail rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</isro:help_avail>
         <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:faceID>
         <isro3:hasAppellation>어르신</isro3:hasAppellation>
