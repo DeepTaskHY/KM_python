@@ -75,7 +75,10 @@ class KnowledgeManager:
             if "?" in v:
                 vars.add(v)
             elif is_korean(v):
-                sparql_spo[k] = '<{}>'.format(self.knowledge_base.search(label=v)[0].iri)
+                try:
+                    sparql_spo[k] = '<{}>'.format(self.knowledge_base.search(label=v)[0].iri)
+                except IndexError:
+                    sparql_spo[k] = '<{}>'.format(self.knowledge_base.search(fullName=v)[0].iri)
             else:
                 sparql_spo[k] = '<{}>'.format(self.knowledge_base.search(iri="*"+v)[0].iri)
 
@@ -166,7 +169,7 @@ class KnowledgeManager:
                     sc = dict()
                     sc['name'] = user.fullName[0]
                     sc['age'] = user.isAged[0].label[0]
-                    sc['gender'] = user.gender.label[0]
+                    sc['gender'] = user.gender[0].label[0]
                     sc['appellation'] = user.hasAppellation[0]
                     sc['help_avail'] = user.help_avail[0]
                     sc['visitFreq'] = user.visitFreq[0]
@@ -176,8 +179,8 @@ class KnowledgeManager:
                     sc['disease_name'] = ms.relatedDisease[0].label[0]
                     sc['disease_status'] = ms.diseaseStatus[0]
                     sc['medical_checkup'] = self.medical_checkup(user, timestamp)
-                    sc['average_smoke'] = user.averageSmoke[0]
-                    sc['average_drink'] = user.averageDrink[0]
+                    sc['smoke_status'] = user.smokeStatus[0]
+                    sc['drink_status'] = user.drinkStatus[0]
                     med = ms.relatedMedicine[0]
                     m_dict = dict()
                     m_dict['medicine_name'] = med.name
@@ -315,20 +318,24 @@ class KnowledgeManager:
 
                     if type(p) == ObjectPropertyClass:
                         if is_korean(predicate['o']):
-                            o = self.km.knowledge_base.search(label=predicate['o'])[0]
+                            try:
+                                o = self.km.knowledge_base.search(label=predicate['o'])[0]
+                            except IndexError:
+                                o = self.km.knowledge_base.search(fullName=predicate['o'])[0]
                         else:
                             o = self.km.knowledge_base.search(iri="*" + predicate['o'])[0]
                     elif type(p) == DataPropertyClass:
                         o = predicate['o']
                     else:
                         raise ValueError
-
-                    getattr(new_i, p.name).append(o)
+                    # print(getattr(new_i, p.python_name))    
+                    getattr(new_i, p.python_name).append(o)
 
                 # MedicalRecord 인 경우 사람의 hasMedicalStatus 갱신
                 if subj == self.km.onto_dict['isro_medical'].MedicalRecord:
                     target_person = new_i.targetPerson[0]
-                    getattr(target_person, 'hasMedicalStatus').pop(0)
+                    if len(getattr(target_person, 'hasMedicalStatus')) > 0:
+                        getattr(target_person, 'hasMedicalStatus').pop(0)
                     getattr(target_person, 'hasMedicalStatus').append(new_i)
 
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
@@ -340,9 +347,24 @@ class KnowledgeManager:
                    timestamp: float = None):
             for d in data:
                 subj = d['subject']
-                for _, ont in self.km.onto_dict.items():
-                    if ont[subj] is not None:
-                        old_i = ont[subj]
+
+                if is_korean(subj):
+                    try:
+                        old_i = self.km.knowledge_base.search(label=subj)[0]
+                    except IndexError:
+                        old_i = self.km.knowledge_base.search(fullName=subj)[0]
+                    except IndexError:
+                        old_i = None
+                else:        
+                    for _, ont in self.km.onto_dict.items():
+                        if ont[subj] is not None:
+                            old_i = ont[subj]
+                        else:
+                            pass
+                
+                if old_i is None:
+                    print(f'There is no subject named {subj}')
+                    return
 
                 for predicate in d['predicate']:
 
