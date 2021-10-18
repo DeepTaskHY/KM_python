@@ -174,6 +174,8 @@ class KnowledgeManager:
                 ms = user.hasMedicalStatus[0]
                 sc['disease_name'] = ms.relatedDisease[0].label[0]
                 sc['medical_checkup'] = self.medical_checkup(user, timestamp)
+                sc['average_smoke'] = user.averageSmoke[0]
+                sc['average_drink'] = user.averageDrink[0]
                 d.update(social_context=sc)
 
             return data
@@ -199,6 +201,9 @@ class KnowledgeManager:
 
             ms = user.hasMedicalStatus[0]
             med_check = dict()
+            med_check['startTime'] = ms.startTime[0].name
+            med_check['relatedDisease'] = ms.relatedDisease[0].label[0]
+            med_check['relatedMedicine'] = ms.relatedMedicine[0].name
 
             sbp = float(ms.systolicBloodPressureLevel[0])
             med_check['systolic_blood_pressure'] = dict()

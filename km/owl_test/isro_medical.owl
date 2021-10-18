@@ -143,6 +143,17 @@
     <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#hasHeight -->
 
     <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#hasHeight"/>
+
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageDrink -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageDrink"/>
+
+
+    <!-- http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageSmoke -->
+
+    <owl:DatatypeProperty rdf:about="http://www.robot-arbi.kr/ontologies/isro_medical.owl#averageSmoke"/>
     
 
 
