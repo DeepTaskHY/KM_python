@@ -8,8 +8,8 @@ import numpy as np
 import rospkg
 
 
-# PACKAGE_PATH = rospkg.RosPack().get_path('km')
-PACKAGE_PATH = '..'
+PACKAGE_PATH = rospkg.RosPack().get_path('km')
+# PACKAGE_PATH = '..'
 
 
 def is_korean(text):
