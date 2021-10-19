@@ -171,16 +171,16 @@ class KnowledgeManager:
                     sc['age'] = user.isAged[0].label[0]
                     sc['gender'] = user.gender[0].label[0]
                     sc['appellation'] = user.hasAppellation[0]
-                    sc['help_avail'] = user.help_avail[0]
                     sc['visitFreq'] = user.visitFreq[0]
+                    
                     sc['sleep_status'] = user.sleepStatus[0]
-                    sc['meal_menu'] = user.haveAMeal[0]
-                    ms = user.hasMedicalStatus[0]
-                    sc['disease_name'] = ms.relatedDisease[0].label[0]
-                    sc['disease_status'] = ms.diseaseStatus[0]
-                    sc['medical_checkup'] = self.medical_checkup(user, timestamp)
+                    sc['disease_status'] = user.diseaseStatus[0]
                     sc['smoke_status'] = user.smokeStatus[0]
                     sc['drink_status'] = user.drinkStatus[0]
+                    
+                    ms = user.hasMedicalStatus[0]
+                    sc['disease_name'] = ms.relatedDisease[0].label[0]
+                    sc['medical_checkup'] = self.medical_checkup(user, timestamp)
                     med = ms.relatedMedicine[0]
                     m_dict = dict()
                     m_dict['medicine_name'] = med.name

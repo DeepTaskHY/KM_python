@@ -24,7 +24,6 @@
   <owl:imports rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl/1.0.1"/>
 </owl:Ontology>
 
-
 <know:Cabinet-PieceOfFurniture rdf:about="#Cabinet001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <rdfs:label>서랍장 첫째칸</rdfs:label>
@@ -79,8 +78,8 @@
   <rdfs:label>이병현</rdfs:label>
   <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neutral</isro:diseaseStatus>
   <know:fullName>이병현</know:fullName>
-  <isro:smokeStatus>negative</isro:smokeStatus>
-  <isro:drinkStatus>negative</isro:drinkStatus>
+  <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative</isro:smokeStatus>
+  <isro:drinkStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative</isro:drinkStatus>
   <isro3:faceID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:faceID>
   <isro3:hasAppellation>어르신</isro3:hasAppellation>
   <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro3:sleepStatus>
@@ -102,6 +101,84 @@
 <isro3:SpeechRecord rdf:about="#SpeechRecord0001">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
 </isro3:SpeechRecord>
+
+<know:Person rdf:about="#person1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro:hasMedicalStatus rdf:resource="#MedicalRecord_1"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
+  <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative</isro:diseaseStatus>
+  <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">조건희</know:fullName>
+  <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
+  <isro:drinkStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:drinkStatus>
+  <isro3:hasAppellation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">어르신</isro3:hasAppellation>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro3:sleepStatus>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
+</know:Person>
+
+<isro:MedicalRecord rdf:about="#MedicalRecord_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <know:startTime rdf:resource="#TimePoint_1"/>
+  <isro2:targetPerson rdf:resource="#person1"/>
+  <isro2:targetPerson rdf:resource="#person2"/>
+  <isro2:targetPerson rdf:resource="#person5"/>
+  <isro:relatedDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_HighBloodPressure"/>
+  <isro:relatedDisease rdf:resource="http://www.robot-arbi.kr/ontologies/isro_medical.owl#_Diabetes"/>
+</isro:MedicalRecord>
+
+<know:TimePoint rdf:about="#TimePoint_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</know:TimePoint>
+
+<know:Person rdf:about="#person2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_YoungAge"/>
+  <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro:diseaseStatus>
+  <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">조건</know:fullName>
+  <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
+  <isro:drinkStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:drinkStatus>
+  <isro3:hasAppellation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">님</isro3:hasAppellation>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro3:sleepStatus>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
+</know:Person>
+
+<know:Person rdf:about="#person3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Female"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
+  <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">조건희</know:fullName>
+  <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
+  <isro:drinkStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:drinkStatus>
+  <isro3:hasAppellation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">어르신</isro3:hasAppellation>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro3:sleepStatus>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
+</know:Person>
+
+<know:Person rdf:about="#person4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_YoungAge"/>
+  <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">최 원혁</know:fullName>
+  <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
+  <isro:drinkStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:drinkStatus>
+  <isro3:hasAppellation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">님</isro3:hasAppellation>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro3:sleepStatus>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
+</know:Person>
+
+<know:Person rdf:about="#person5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Female"/>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AdultAge"/>
+  <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neutral</isro:diseaseStatus>
+  <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">최원혁</know:fullName>
+  <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
+  <isro:drinkStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative</isro:drinkStatus>
+  <isro3:hasAppellation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">님</isro3:hasAppellation>
+  <isro3:sleepStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative</isro3:sleepStatus>
+  <isro3:visitFreq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</isro3:visitFreq>
+</know:Person>
 
 
 </rdf:RDF>
