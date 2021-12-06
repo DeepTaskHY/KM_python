@@ -74,6 +74,7 @@
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isro:hasMedicalStatus rdf:resource="#MedicalRecord_1631636791.1036713"/>
   <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:age>85</isro3:age>
   <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
   <rdfs:label>이병현</rdfs:label>
   <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neutral</isro:diseaseStatus>
@@ -106,6 +107,7 @@
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isro:hasMedicalStatus rdf:resource="#MedicalRecord_1"/>
   <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
+  <isro3:age>85</isro3:age>
   <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
   <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative</isro:diseaseStatus>
   <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">조건희</know:fullName>
@@ -133,7 +135,8 @@
 <know:Person rdf:about="#person2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Male"/>
-  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_YoungAge"/>
+  <isro3:age>30</isro3:age>
+  <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_AdultAge"/>
   <isro:diseaseStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">positive</isro:diseaseStatus>
   <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">조건</know:fullName>
   <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
@@ -146,6 +149,7 @@
 <know:Person rdf:about="#person3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isro3:gender rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_Female"/>
+  <isro3:age>85</isro3:age>
   <isro3:isAged rdf:resource="http://www.robot-arbi.kr/ontologies/isro_social.owl#_OldAge"/>
   <know:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">조건희</know:fullName>
   <isro:smokeStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></isro:smokeStatus>
