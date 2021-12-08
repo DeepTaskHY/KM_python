@@ -394,6 +394,10 @@ class KnowledgeManager:
         def delete(self,
                    data: list,
                    timestamp: float):
+            for d in data:
+                subj = d['subject']
+
+                
 
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
