@@ -183,27 +183,29 @@ class KnowledgeManager:
                     
                 if user is not None:
                     sc = dict()
-                    sc['name'] = user.fullName[0]
-                    sc['age'] = user.isAged[0].label[0]
-                    sc['gender'] = user.gender[0].label[0]
-                    sc['appellation'] = user.hasAppellation[0]
-                    sc['visitFreq'] = user.visitFreq[0]
+                    sc['name'] = user.fullName[0] if user.fullName else ''
+                    sc['age'] = user.isAged[0].label[0] if user.isAged else ''
+                    sc['gender'] = user.gender[0].label[0] if user.gender else ''
+                    sc['appellation'] = user.hasAppellation[0] if user.hasAppellation else ''
+                    sc['visitFreq'] = user.visitFreq[0] if user.visitFreq else 0
                     
-                    sc['sleep_status'] = user.sleepStatus[0]
-                    sc['disease_status'] = user.diseaseStatus[0]
-                    sc['smoke_status'] = user.smokeStatus[0]
-                    sc['drink_status'] = user.drinkStatus[0]
+                    sc['sleep_status'] = user.sleepStatus[0] if user.sleepStatus else 'Neutral'
+                    sc['disease_status'] = user.diseaseStatus[0] if user.diseaseStatus else 'Neutral'
+                    sc['smoke_status'] = user.smokeStatus[0] if user.smokeStatus else 'Neutral'
+                    sc['drink_status'] = user.drinkStatus[0] if user.drinkStatus else 'Neutral'
                     
-                    ms = user.hasMedicalStatus[0]
-                    sc['disease_name'] = ms.relatedDisease[0].label[0]
-                    sc['medical_checkup'] = self.medical_checkup(user, timestamp)
-                    med = ms.relatedMedicine[0]
-                    m_dict = dict()
-                    m_dict['medicine_name'] = med.name
-                    m_dict['location'] = med.hasLocation[0].label[0]
-                    m_dict['takingMedicine'] = med.takingMedicine[0]
-                    m_dict['medication_guide'] = med.medicationGuide[0]
-                    sc['medicine'] = m_dict
+                    ms = user.hasMedicalStatus[0] if user.hasMedicalStatus else None
+                    if ms:
+                        sc['disease_name'] = ms.relatedDisease[0].label[0]
+                        sc['medical_checkup'] = self.medical_checkup(user, timestamp)
+                        med = ms.relatedMedicine[0] if ms.relatedMedicine else None
+                        if med: 
+                            m_dict = dict()
+                            m_dict['medicine_name'] = med.name
+                            m_dict['location'] = med.hasLocation[0].label[0]
+                            m_dict['takingMedicine'] = med.takingMedicine[0]
+                            m_dict['medication_guide'] = med.medicationGuide[0]
+                            sc['medicine'] = m_dict
 
                     d.update(social_context=sc)
 
