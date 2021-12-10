@@ -308,7 +308,7 @@ class KnowledgeManager:
                    data: list,
                    timestamp: float) -> list:
 
-            created_individuals = list()
+            
 
             for d in data:
                 subj = d['subject']
@@ -357,17 +357,17 @@ class KnowledgeManager:
                     if len(getattr(target_person, 'hasMedicalStatus')) > 0:
                         getattr(target_person, 'hasMedicalStatus').pop(0)
                     getattr(target_person, 'hasMedicalStatus').append(new_i)
-                created_individuals.append(new_i)
 
+                
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
-            return created_individuals
+            return data
 
         def update(self,
                    data: list,
                    timestamp: float = None):
 
-            updated_individuals = list()
+            
 
             for d in data:
                 subj = d['subject']
@@ -410,11 +410,11 @@ class KnowledgeManager:
                     if len(getattr(old_i, p.name)) > 0:
                         getattr(old_i, p.name).pop(0)
                     getattr(old_i, p.name).append(o)
-                updated_individuals.append(old_i)
+                
 
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
-            return updated_individuals
+            return data
 
         def delete(self,
                    data: list,
