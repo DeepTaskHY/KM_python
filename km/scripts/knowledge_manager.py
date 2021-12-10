@@ -159,7 +159,7 @@ class KnowledgeManager:
                         }
                     ]
                     new_person = self.km.knowledge_request.create(temp_data, time.time())[0]
-                    sc = self.social_context([{"target": new_person.name}], timestamp)
+                    sc = self.social_context([{"target": new_person.get('name')}], timestamp)
                 
                 d.update(target=sc[0]['target'])
                 d.update(social_context=sc[0]['social_context'])
