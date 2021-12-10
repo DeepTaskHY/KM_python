@@ -188,7 +188,7 @@ class KnowledgeManager:
                     sc['gender'] = user.gender[0].label[0] if user.gender else ''
                     sc['appellation'] = user.hasAppellation[0] if user.hasAppellation else ''
                     sc['visitFreq'] = user.visitFreq[0] if user.visitFreq else 0
-                    
+                    sc['face_id'] = user.faceID[0] if user.faceID else 0
                     sc['sleep_status'] = user.sleepStatus[0] if user.sleepStatus else 'Neutral'
                     sc['disease_status'] = user.diseaseStatus[0] if user.diseaseStatus else 'Neutral'
                     sc['smoke_status'] = user.smokeStatus[0] if user.smokeStatus else 'Neutral'
