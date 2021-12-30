@@ -159,7 +159,7 @@ class KnowledgeManager:
                         }
                     ]
                     new_person = self.km.knowledge_request.create(temp_data, time.time())[0]
-                    sc = self.social_context([{"target": new_person.get('name')}], timestamp)
+                    sc = self.social_context([{"target": new_person.name}], timestamp)
                 
                 d.update(target=sc[0]['target'])
                 d.update(social_context=sc[0]['social_context'])
@@ -308,7 +308,7 @@ class KnowledgeManager:
                    data: list,
                    timestamp: float) -> list:
 
-            
+            new_individuals = list()
 
             for d in data:
                 subj = d['subject']
@@ -357,17 +357,15 @@ class KnowledgeManager:
                     if len(getattr(target_person, 'hasMedicalStatus')) > 0:
                         getattr(target_person, 'hasMedicalStatus').pop(0)
                     getattr(target_person, 'hasMedicalStatus').append(new_i)
-
+                new_individuals.append(new_i)
                 
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
 
-            return data
+            return new_individuals
 
         def update(self,
                    data: list,
                    timestamp: float = None):
-
-            
 
             for d in data:
                 subj = d['subject']
