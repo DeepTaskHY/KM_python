@@ -16,7 +16,7 @@ class KMNode(DTNode):
         super(KMNode, self).__init__(publish_message='/taskCompletion',
                                      subscribe_message='/taskExecution',
                                      *args, **kwargs)
-
+        
         self.source_name = 'knowledge'
         self.knowledge_manager = KnowledgeManager()
         rospy.loginfo('Start KM')
