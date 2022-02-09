@@ -16,6 +16,32 @@ def is_korean(text):
     kor_re = re.compile(r"[ㄱ-ㅣ가-힣]")
     return kor_re.search(text) is not None
 
+def sc_generator(user_i=None):
+    sc = dict()
+    if user_i is not None:
+        sc['name'] = user_i.fullName[0] if user_i.fullName else ''
+        sc['age'] = user_i.isAged[0].label[0] if user_i.isAged else ''
+        sc['gender'] = user_i.gender[0].label[0] if user_i.gender else ''
+        sc['appellation'] = user_i.hasAppellation[0] if user_i.hasAppellation else ''
+        sc['visitFreq'] = user_i.visitFreq[0] if user_i.visitFreq else 0
+        sc['face_id'] = user_i.faceID[0] if user_i.faceID else 0
+        sc['sleep_status'] = user_i.sleepStatus[0] if user_i.sleepStatus else 'Neutral'
+        sc['disease_status'] = user_i.diseaseStatus[0] if user_i.diseaseStatus else 'Neutral'
+        sc['smoke_status'] = user_i.smokeStatus[0] if user_i.smokeStatus else 'Neutral'
+        sc['drink_status'] = user_i.drinkStatus[0] if user_i.drinkStatus else 'Neutral'
+    else:
+        sc['name'] = ''
+        sc['age'] = ''
+        sc['gender'] = ''
+        sc['appellation'] = ''
+        sc['visitFreq'] = 0
+        sc['face_id'] = 0
+        sc['sleep_status'] = 'Neutral'
+        sc['disease_status'] = 'Neutral'
+        sc['smoke_status'] = 'Neutral'
+        sc['drink_status'] = 'Neutral'
+    return sc
+
 
 class KnowledgeManager:
 
@@ -35,6 +61,10 @@ class KnowledgeManager:
         self.knowledge_query = self.knowledge_query(self)
         self.knowledge_request = self.knowledge_request(self)
         self.knowledge_inference = self.knowledge_inference(self)
+
+    def reload_ontology(self):
+        self.knowledge_base = self.load_ontology()
+        return self.knowledge_base
 
     def load_ontology(self):
 
@@ -143,23 +173,11 @@ class KnowledgeManager:
             for d in data:
                 f_id = d['face_id']
                 user = self.km.knowledge_base.search(faceID=f_id)
-
+                
                 if user:
                     sc = self.social_context([{"target": user[0].name}], timestamp)
                 else:
-                    temp_data = [
-                        {
-                            "subject": "Person",
-                            "predicate": [
-                                {
-                                    "p": "faceID",
-                                    "o": f_id
-                                }
-                            ]
-                        }
-                    ]
-                    new_person = self.km.knowledge_request.create(temp_data, time.time())[0]
-                    sc = self.social_context([{"target": new_person.name}], timestamp)
+                    sc = self.social_context([{"target": None}], timestamp)
                 
                 d.update(target=sc[0]['target'])
                 d.update(social_context=sc[0]['social_context'])
@@ -171,28 +189,17 @@ class KnowledgeManager:
                            timestamp: float = None) -> list:
             for d in data:
                 user = d['target']
-
-                if is_korean(user):
-                    try:
-                        user = self.km.knowledge_base.search(label=user)[0]
-                    except IndexError:
-                        return data
-
-                if isinstance(user, str):
-                    user = getattr(self.km.knowledge_base, user)
-                    
                 if user is not None:
-                    sc = dict()
-                    sc['name'] = user.fullName[0] if user.fullName else ''
-                    sc['age'] = user.isAged[0].label[0] if user.isAged else ''
-                    sc['gender'] = user.gender[0].label[0] if user.gender else ''
-                    sc['appellation'] = user.hasAppellation[0] if user.hasAppellation else ''
-                    sc['visitFreq'] = user.visitFreq[0] if user.visitFreq else 0
-                    sc['face_id'] = user.faceID[0] if user.faceID else 0
-                    sc['sleep_status'] = user.sleepStatus[0] if user.sleepStatus else 'Neutral'
-                    sc['disease_status'] = user.diseaseStatus[0] if user.diseaseStatus else 'Neutral'
-                    sc['smoke_status'] = user.smokeStatus[0] if user.smokeStatus else 'Neutral'
-                    sc['drink_status'] = user.drinkStatus[0] if user.drinkStatus else 'Neutral'
+                    if is_korean(user):
+                        try:
+                            user = self.km.knowledge_base.search(label=user)[0]
+                        except IndexError:
+                            return data
+
+                    if isinstance(user, str):
+                        user = getattr(self.km.knowledge_base, user)
+
+                    sc = sc_generator(user)
                     
                     ms = user.hasMedicalStatus[0] if user.hasMedicalStatus else None
                     if ms:
@@ -207,7 +214,10 @@ class KnowledgeManager:
                             m_dict['medication_guide'] = med.medicationGuide[0]
                             sc['medicine'] = m_dict
 
-                    d.update(social_context=sc)
+                else:
+                    sc = sc_generator()
+
+                d.update(social_context=sc)
 
             return data
 
@@ -360,6 +370,7 @@ class KnowledgeManager:
                 new_individuals.append(new_i)
                 
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
+            self.km.reload_ontology()
 
             return new_individuals
 
@@ -409,8 +420,8 @@ class KnowledgeManager:
                         getattr(old_i, p.name).pop(0)
                     getattr(old_i, p.name).append(o)
                 
-
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
+            self.km.reload_ontology()
 
             return data
 
@@ -420,9 +431,8 @@ class KnowledgeManager:
             for d in data:
                 subj = d['subject']
 
-                
-
             self.km.knowledge_base.save(file=self.km.base_owl, format='rdfxml')
+            self.km.reload_ontology()
 
             return None
 
