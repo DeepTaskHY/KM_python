@@ -244,7 +244,7 @@ class KnowledgeManager:
             med_check = dict()
             med_check['startTime'] = ms.startTime[0].name
             med_check['relatedDisease'] = ms.relatedDisease[0].label[0]
-            med_check['relatedMedicine'] = ms.relatedMedicine[0].name
+            med_check['relatedMedicine'] = ms.relatedMedicine[0].name if ms.relatedMedicine else None
 
             sbp = float(ms.systolicBloodPressureLevel[0])
             med_check['systolic_blood_pressure'] = dict()
